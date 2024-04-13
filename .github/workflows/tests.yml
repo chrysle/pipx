@@ -4,6 +4,7 @@ on:
   workflow_dispatch:
   push:
   pull_request:
+    types: [opened, reopened, synchronize, closed]
   schedule:
     - cron: "0 8 * * *"
 concurrency:

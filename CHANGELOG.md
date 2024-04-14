@@ -9,7 +9,7 @@ This project uses [*towncrier*](https://towncrier.readthedocs.io/) for keeping t
 
 <!-- towncrier release notes start -->
 
-## [1.3.0](https://github.com/pypa/pipx/tree/1.3.0) - 2024-04-14
+## [1.3.1](https://github.com/pypa/pipx/tree/1.3.1) - 2024-04-14
 
 ### Features
 

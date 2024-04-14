@@ -4,6 +4,9 @@ on:
   workflow_dispatch:
   push:
   pull_request:
+  pull_request_target:
+    types:
+      - closed
   schedule:
     - cron: "0 8 * * *"
 concurrency:
@@ -92,9 +95,8 @@ jobs:
     permissions:
       contents: write
     if: >-
-        github.event_name == 'pull_request'
-        && github.event.pull_request.merged == true
-        && github.event.pull_request.labels.name == 'release-version'
+        github.event.pull_request.merged == true
+        && contains(github.event.pull_request.labels.*.name, 'release-version')
     steps:
       - uses: actions/checkout@v4
       - name: Extract version to be released
@@ -106,7 +108,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           generateReleaseNotes: true
-          tag: "$VERSION"
+          tag: "${{ env.VERSION }}"
           commit: ${{ github.event.pull_request.merge_commit_sha }}
 
   pypi-publish:

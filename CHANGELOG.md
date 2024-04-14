@@ -9,6 +9,37 @@ This project uses [*towncrier*](https://towncrier.readthedocs.io/) for keeping t
 
 <!-- towncrier release notes start -->
 
+## [1.2.4](https://github.com/pypa/pipx/tree/1.2.4) - 2024-04-14
+
+
+### Features
+
+- Add a `--fetch-missing-python` flag to all commands that accept a `--python` flag.
+
+  When combined, this will automatically download a standalone copy of the requested python version if it's not already available on the user's system. ([#1242](https://github.com/pypa/pipx/issues/1242))
+- Add commands to list and prune standalone interpreters ([#1248](https://github.com/pypa/pipx/issues/1248))
+- Add `--install` option to `pipx upgrade` command.
+
+  This will install the package given as argument if it is not already installed. ([#1262](https://github.com/pypa/pipx/issues/1262))
+
+### Bugfixes
+
+- Correctly resolve home directory in pipx directory environment variables. ([#94](https://github.com/pypa/pipx/issues/94))
+- Fix installation issues when files in the working directory interfere with venv creation process. ([#1091](https://github.com/pypa/pipx/issues/1091))
+- Report correct filename in tracebacks with `pipx run <scriptname>` ([#1191](https://github.com/pypa/pipx/issues/1191))
+- Let self-managed pipx uninstall itself on windows again. ([#1203](https://github.com/pypa/pipx/issues/1203))
+- Fix path resolution for python executables looked up in PATH on windows. ([#1205](https://github.com/pypa/pipx/issues/1205))
+- Display help message when `pipx install` is run without arguments. ([#1266](https://github.com/pypa/pipx/issues/1266))
+- Fix crashes due to superfluous `-q ` flags by discarding exceeding values ([#1283](https://github.com/pypa/pipx/issues/1283))
+
+### Improved Documentation
+
+- Update the completion instructions for zipapp users. ([#1072](https://github.com/pypa/pipx/issues/1072))
+- Update the example for running scripts with dependencies. ([#1227](https://github.com/pypa/pipx/issues/1227))
+- Update the docs for package developers on the use of configuration using pyproject.toml ([#1229](https://github.com/pypa/pipx/issues/1229))
+- Add installation instructions for Fedora ([#1239](https://github.com/pypa/pipx/issues/1239))
+
+
 ## [1.4.3](https://github.com/pypa/pipx/tree/1.4.3) - 2024-01-16
 
 

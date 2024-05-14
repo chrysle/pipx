@@ -11,7 +11,6 @@ This project uses [*towncrier*](https://towncrier.readthedocs.io/) for keeping t
 
 ## [1.3.8](https://github.com/pypa/pipx/tree/1.3.8) - 2024-05-14
 
-
 ### Features
 
 - Add a `--fetch-missing-python` flag to all commands that accept a `--python` flag.

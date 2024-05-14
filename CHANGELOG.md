@@ -9,9 +9,6 @@ This project uses [*towncrier*](https://towncrier.readthedocs.io/) for keeping t
 
 <!-- towncrier release notes start -->
 
-## [1.4.1](https://github.com/pypa/pipx/tree/1.4.1) - 2024-05-14
-
-
 ### Features
 
 - Add a `--fetch-missing-python` flag to all commands that accept a `--python` flag.

@@ -14,6 +14,9 @@ env:
 jobs:
   create-tag:
     name: Create the Git tag
+    if: >-
+      github.event.pull_request.merged == true
+      && contains(github.event.pull_request.labels.*.name, 'release-version')
     runs-on: ubuntu-latest
     outputs:
       release-tag: ${{ steps.get-version.outputs.version }}
@@ -24,18 +27,16 @@ jobs:
         env:
           TITLE: ${{ github.event.pull_request.title }}
         run: |
-          echo "version=${TITLE/: [[:alnum:]]*} }" >> "$GITHUB_OUTPUT"
+          echo "version=${TITLE/: [[:alnum:]]*}" >> "$GITHUB_OUTPUT"
       - name: Bump version and push tag
         uses: mathieudutour/github-tag-action@v6.2
         with:
           custom_tag: "${{ steps.get-version.outputs.version }}"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
   pypi-publish:
     name: Publish pipx to PyPI
     needs: create-tag
-    if: >-
-      github.event.pull_request.merged == true
-      && contains(github.event.pull_request.labels.*.name, 'release-version')
     runs-on: ubuntu-latest
     environment:
       name: release
@@ -61,6 +62,7 @@ jobs:
 
   create-release:
     name: Create a release on GitHub's UI
+    if: always()
     needs: [pypi-publish, create-tag]
     runs-on: ubuntu-latest
     permissions:
